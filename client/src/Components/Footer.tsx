@@ -1,51 +1,52 @@
-'use client'
-import { footerLinks } from '@/constants'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import Image from "next/image";
+import Link from "next/link";
 
-const Footer = () => {
-    return (
-        <div className='mt-20 pb-6 border-t max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4 bg-transparent'>
+import { footerLinks } from "@/constants";
 
-            <div className='main_component_design flex-1 flex flex-col mt-6'>
-                <div className=' flex flex-row justify-between'>
-                    <div className='xl:w-[45%] justify-center w-[30%] flex flex-col space-y-4'>
-                        <Image src='/logo.svg' alt='logo' width={120} height={18} />
-                        <div className='flex-col space-y-1  md:text-[16px] text-[14px]  text-neutral-500'>
-                            <p>Carhub2023</p>
-                            <p>All rights reserved&copy;</p>
-                        </div>
-                    </div>
-                    <div className='ml-12  flex flex-row justify-between flex-wrap  w-full '>
-                        {
-                            footerLinks.map((item) => (
-                                <div className='flex-col  space-y-4 ml-10 mb-8'>
-                                    <h1 className='font-bold'>{item.title}</h1>
-                                    <div className='flex  flex-col space-y-3'>
-                                        {
-                                            item.links.map((link) => (
-                                                <Link href={link.url}>
-                                                    <p className='text-neutral-500'>{link.title}</p>
-                                                </Link>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
+const Footer = () => (
+  <footer className='flex flex-col text-black-100  mt-5 border-t border-gray-100'>
+    <div className='flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10'>
+      <div className='flex flex-col justify-start items-start gap-6'>
+        <Image src='/logo.svg' alt='logo' width={118} height={18} className='object-contain' />
+        <p className='text-base text-gray-700'>
+          Carhub 2023 <br />
+          All Rights Reserved &copy;
+        </p>
+      </div>
 
-                </div>
-
-                <div className='flex-row'>
-
-                </div>
+      <div className="footer__links">
+        {footerLinks.map((item) => (
+          <div key={item.title} className="footer__link">
+            <h3 className="font-bold">{item.title}</h3>
+            <div className="flex flex-col gap-5">
+              {item.links.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.url}
+                  className="text-gray-500"
+                >
+                  {link.title}
+                </Link>
+              ))}
             </div>
+          </div>
+        ))}
+      </div>
+    </div>
 
+    <div className='flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10'>
+      <p>@2023 CarHub. All rights reserved</p>
 
-        </div>
-    )
-}
+      <div className="footer__copyrights-link">
+        <Link href="/" className="text-gray-500">
+          Privacy & Policy
+        </Link>
+        <Link href="/" className="text-gray-500">
+          Terms & Condition
+        </Link>
+      </div>
+    </div>
+  </footer>
+);
 
-export default Footer
+export default Footer;
